@@ -6,8 +6,6 @@ Source code of this package is somewhat messy.. as it was my training ground for
 
 ## Installation
 
-nectan) is installed on your system. To install `nectan`, do the following:
-
 1. Install [Python](http://python.org/download/) and [pip](http://www.pip-installer.org/en/latest/installing.html).
 
 1. Install `nectan` by typing the following in a terminal:
