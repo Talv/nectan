@@ -9,7 +9,7 @@ class Instructions():
     OTHER = ["return"] # "template"
     SPECIAL_TYPES = ["arrayref", "structref", "funcref"]
     TYPES = [
-        "abilcmd", "actor", "actorscope", "aifilter", "animfilter", "bank", "bool", "byte", "camerainfo", "char", "color", "doodad", "fixed", "handle", "int", "marker", "order", "playergroup", "point", "region", "revealer", "sound", "soundlink", "string", "text", "timer", "transmissionsource", "trigger", "unit", "unitfilter", "unitgroup", "unitref", "void", "wave", "waveinfo", "wavetarget"
+        "abilcmd", "actor", "actorscope", "aifilter", "animfilter", "bank", "bool", "byte", "camerainfo", "char", "color", "doodad", "fixed", "handle", "int", "marker", "order", "playergroup", "point", "region", "revealer", "sound", "soundlink", "string", "text", "timer", "transmissionsource", "trigger", "unit", "unitfilter", "unitgroup", "unitref", "void", "wave", "waveinfo", "wavetarget", "arrayref", "structref", "funcref"
     ]
     BOOL = ["true", "false"]
     NULL = ["null"]
@@ -44,7 +44,7 @@ class Operations():
 
     INFIX = RESOLUTION + SELECTION + MULTIPLICATION + ADDITION + BITWISE + RELATION + EQUALITY + LOGICAL + ASSIGNMENT # + TERNARY
 
-    OPERATORS = INFIX # PREFIX + INFIX + POSTFIX
+    OPERATORS = PREFIX + INFIX + POSTFIX
 
     # PRECEDENCE = [
     #     RESOLUTION,

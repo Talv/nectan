@@ -230,7 +230,7 @@ class Parser(object):
                         if not isinstance(expressions[opIndex + 1], (ast.Value, ast.Operation)):
                             self.raiseError("rvalue not found or not valid")
                     except IndexError:
-                        self.raiseError("lvalue or rvalue of the expression has not been found")
+                        self.raiseError("Expression can't be evaluated, missing - missing parameters.")
                     if op.descriptor.operator in definitions.Operations.TERNARY:
                         self.raiseError("TODO: ternary")
                     else:
@@ -312,6 +312,8 @@ class Parser(object):
                 node = None
                 # prefix operator
                 if self.tokens[0] in definitions.Operations.PREFIX:
+                    if self.tokens[0] in ["++", "--"]:
+                        self.raiseError("Operators -- and ++ are not supported")
                     node = self.createNode( ast.PrefixOp(self.dropToken() ) )
                     node = OperationHolder( node )
                     expressions.append( node )
@@ -330,6 +332,8 @@ class Parser(object):
                 node = None
                 # postfix operator
                 if self.tokens[0] in definitions.Operations.POSTFIX:
+                    if self.tokens[0] in ["++", "--"]:
+                        self.raiseError("Operators -- and ++ are not supported")
                     node = self.createNode( ast.PostfixOp(self.dropToken()) )
                     expressions.append(OperationHolder(node))
                 else:
@@ -733,7 +737,7 @@ class Parser(object):
                     #     self.raiseError("?")
             except IndexError as e:
                 # print(traceback.format_exc())
-                raise self.parseError(str(e)) from e
+                raise self.parseError("Unexpected end of statement") from e
         except definitions.ParseError as e:
             pass
 
