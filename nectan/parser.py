@@ -53,7 +53,7 @@ class Parser(object):
 
     def readfile(self, filename):
         # absoulte path
-        if filename[0] != "/":
+        if not re.match(r'^(?:/|c:\\)', filename, flags=re.I):
             for path in self.incPath:
                 fullFilename = path + filename
                 if not os.path.isfile(fullFilename):
