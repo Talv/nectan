@@ -11,7 +11,7 @@ class Instructions():
     TYPES = [
         "char", "int", "fixed", "void", "bool",
         "string", "text",
-        *SPECIAL_TYPES,
+        "arrayref", "structref", "funcref",
         "bank", "point", "unit", "trigger"
     ]
     BOOL = ["true", "false"]
