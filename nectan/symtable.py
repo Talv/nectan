@@ -55,7 +55,9 @@ def mapSymbols(rootNode, rootSmTable):
     def mapIdentifier(identifier):
         symbol = seekSymbol(identifier.value)
         if not symbol:
-            raise definitions.SemanticError(identifier, "referenced underclared symbol '%s'" % identifier.value)
+            return None
+            # @TODO warning?
+            # raise definitions.SemanticError(identifier, "referenced underclared symbol '%s'" % identifier.value)
         identifier._symbol = symbol
         return symbol
 
