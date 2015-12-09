@@ -37,6 +37,7 @@ class Parser(object):
         self.parseIncludes = parseIncludes
         self.incPath = list()
         self.prevToken = None
+        self.isGpp = False
         if isinstance(incPath, list):
             self.incPath.extend(incPath)
         elif isinstance(incPath, str):
@@ -455,7 +456,7 @@ class Parser(object):
                 if stripSemicolon:
                     self.dropToken()
                 break
-            elif self.tokens[0] == ",":
+            elif self.tokens[0] == "," and self.isGpp:
                 self.dropToken()
                 i += 1
                 continue
@@ -478,6 +479,8 @@ class Parser(object):
         self.dropToken()
 
         node.condition = self.parseExpression([")"])
+        if not node.condition:
+            self.raiseError("If must contain condition")
 
         if self.tokens[0] != ")":
             self.raiseError("Expected ')'")
@@ -486,7 +489,10 @@ class Parser(object):
         node.ifTrue = self.parseBlockOrStatement()
         if self.tokens[0] == "else":
             self.dropToken()
-            node.ifFalse = self.parseBlockOrStatement()
+            if self.tokens[0] == "if":
+                node.ifFalse = self.parseIf()
+            else:
+                node.ifFalse = self.parseBlockOrStatement()
         return node
 
     def parseWhile(self):
@@ -558,9 +564,9 @@ class Parser(object):
                 node.isNative = True
             elif self.tokens[0] == "static":
                 node.isStatic = True
-            elif self.tokens[0] == "private":
+            elif self.tokens[0] == "private" and self.isGpp:
                 node.isPrivate = True
-            elif self.tokens[0] == "public":
+            elif self.tokens[0] == "public" and self.isGpp:
                 node.isPrivate = False
             else:
                 self.raiseError("unhandled modifier \"%s\"" % self.tokens[0])
@@ -710,10 +716,10 @@ class Parser(object):
         return node
 
     def parseBlockOrStatement(self):
-        if self.tokens[0] == "{":
-            return self.parseContainer()
-        else:
+        if not self.tokens[0] == "{" and self.isGpp:
             return self.parseStatement()
+        else:
+            return self.parseContainer()
 
     def parseFile(self, filename, rootNode = None):
         self.tokens = list(lexer.tokenize(
