@@ -1,0 +1,325 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ADDITION	nectan/definitions.py	/^    ADDITION = ["+", "-"]$/;"	kind:variable	line:25
+ARRAY_SUBSCRIPT	nectan/definitions.py	/^    ARRAY_SUBSCRIPT = ["[]"]$/;"	kind:variable	line:33
+ASSIGNMENT	nectan/definitions.py	/^    ASSIGNMENT = [$/;"	kind:variable	line:35
+ArgumentDefinition	nectan/ast.py	/^class ArgumentDefinition(SymbolDefinition, Node):$/;"	kind:class	line:210
+ArraySubscript	nectan/ast.py	/^class ArraySubscript(PostfixOp):$/;"	kind:class	line:417
+AssignmentOp	nectan/ast.py	/^class AssignmentOp(InfixOp):$/;"	kind:class	line:389
+BITWISE	nectan/definitions.py	/^    BITWISE = ["|", "&", "^", "<<", ">>"]$/;"	kind:variable	line:26
+BOOL	nectan/definitions.py	/^    BOOL = ["true", "false"]$/;"	kind:variable	line:14
+BinaryOp	nectan/ast.py	/^class BinaryOp(InfixOp):$/;"	kind:class	line:383
+Block	nectan/ast.py	/^class Block(Container):$/;"	kind:class	line:160
+Break	nectan/ast.py	/^class Break(Statement):$/;"	kind:class	line:345
+BuiltinType	nectan/ast.py	/^class BuiltinType(RootType):$/;"	kind:class	line:185
+CONTAINERS	nectan/definitions.py	/^    CONTAINERS = ["struct"] # , "class", "namespace", "enrichment", "property"$/;"	kind:variable	line:3
+Class	nectan/ast.py	/^class Class(Container, SymbolDefinition):$/;"	kind:class	line:132
+CodePrinter	nectan/definitions.py	/^class CodePrinter(object):$/;"	kind:class	line:133
+Container	nectan/ast.py	/^class Container(Node):$/;"	kind:class	line:114
+Continue	nectan/ast.py	/^class Continue(Statement):$/;"	kind:class	line:341
+CustomValue	nectan/ast.py	/^class CustomValue(Value):$/;"	kind:class	line:296
+Deobfuscator	nectan/cli.py	/^from .deobfuscator import Deobfuscator$/;"	kind:namespace	line:4
+Deobfuscator	nectan/deobfuscator.py	/^class Deobfuscator(object):$/;"	kind:class	line:29
+DoWhile	nectan/ast.py	/^class DoWhile(Loop):$/;"	kind:class	line:261
+Expression	nectan/ast.py	/^class Expression(Statement):$/;"	kind:class	line:350
+FLOW	nectan/definitions.py	/^    FLOW = ["if", "else", "case", "default", "continue", "break"]$/;"	kind:variable	line:6
+FUNCTION_CALL	nectan/definitions.py	/^    FUNCTION_CALL = ["()"]$/;"	kind:variable	line:32
+FUNC_MODS	nectan/definitions.py	/^    FUNC_MODS = ["static", "native"] # "private", "public"$/;"	kind:variable	line:4
+File	nectan/ast.py	/^class File(Container):$/;"	kind:class	line:124
+FixedValue	nectan/ast.py	/^class FixedValue(NumericValue):$/;"	kind:class	line:326
+For	nectan/ast.py	/^class For(Loop):$/;"	kind:class	line:266
+FunctionCall	nectan/ast.py	/^class FunctionCall(PostfixOp):$/;"	kind:class	line:408
+FunctionCollection	nectan/utils.py	/^class FunctionCollection(NodeCollection):$/;"	kind:class	line:10
+FunctionDefinition	nectan/ast.py	/^class FunctionDefinition(Container, SymbolDefinition):$/;"	kind:class	line:146
+INCLUDE	nectan/definitions.py	/^    INCLUDE = ["include"] # using$/;"	kind:variable	line:8
+INFIX	nectan/definitions.py	/^    INFIX = RESOLUTION + SELECTION + MULTIPLICATION + ADDITION + BITWISE + RELATION + EQUALITY + LOGICAL + ASSIGNMENT # + TERNARY$/;"	kind:variable	line:45
+Identifier	nectan/ast.py	/^class Identifier(Value):$/;"	kind:class	line:289
+If	nectan/ast.py	/^class If(Node):$/;"	kind:class	line:239
+InChar	nectan/lexer.py	/^    InChar = 2$/;"	kind:variable	line:43
+InCode	nectan/lexer.py	/^    InCode = 0$/;"	kind:variable	line:41
+InComment	nectan/lexer.py	/^    InComment = 3$/;"	kind:variable	line:44
+InString	nectan/lexer.py	/^    InString = 1$/;"	kind:variable	line:42
+Include	nectan/ast.py	/^class Include(Container):$/;"	kind:class	line:168
+InfixOp	nectan/ast.py	/^class InfixOp(Operation):$/;"	kind:class	line:375
+Instructions	nectan/definitions.py	/^class Instructions():$/;"	kind:class	line:2
+IntegerValue	nectan/ast.py	/^class IntegerValue(NumericValue):$/;"	kind:class	line:320
+KEYWORDS	nectan/definitions.py	/^    KEYWORDS = CONTAINERS + FUNC_MODS + VAR_MODS + FLOW + LOOPS + INCLUDE + OTHER + TYPES + BOOL + NULL$/;"	kind:variable	line:16
+LINE_LENGTH	nectan/printers/uglify.py	/^    LINE_LENGTH = 128$/;"	kind:variable	line:8
+LOGICAL	nectan/definitions.py	/^    LOGICAL = ["&&", "||"]$/;"	kind:variable	line:43
+LOOPS	nectan/definitions.py	/^    LOOPS = ["for", "do", "while"] # "switch"$/;"	kind:variable	line:7
+LexState	nectan/lexer.py	/^class LexState:$/;"	kind:class	line:40
+LogicalValue	nectan/ast.py	/^class LogicalValue(CustomValue):$/;"	kind:class	line:308
+Loop	nectan/ast.py	/^class Loop(Container):$/;"	kind:class	line:250
+MULTIPLICATION	nectan/definitions.py	/^    MULTIPLICATION = ["*", "\/", "%"]$/;"	kind:variable	line:24
+NULL	nectan/definitions.py	/^    NULL = ["null"]$/;"	kind:variable	line:15
+Namespace	nectan/ast.py	/^class Namespace(Container):$/;"	kind:class	line:128
+Node	nectan/ast.py	/^class Node(object):$/;"	kind:class	line:9
+NodeCollection	nectan/utils.py	/^class NodeCollection(object):$/;"	kind:class	line:4
+NodeWalker	nectan/utils.py	/^class NodeWalker(object):$/;"	kind:class	line:14
+NullValue	nectan/ast.py	/^class NullValue(Value):$/;"	kind:class	line:283
+NumericValue	nectan/ast.py	/^class NumericValue(CustomValue):$/;"	kind:class	line:314
+OPERATORS	nectan/definitions.py	/^    OPERATORS = PREFIX + INFIX + POSTFIX$/;"	kind:variable	line:47
+OTHER	nectan/definitions.py	/^    OTHER = ["return"] # "template"$/;"	kind:variable	line:9
+Obfuscator	nectan/obfuscator.py	/^class Obfuscator(object):$/;"	kind:class	line:11
+Operation	nectan/ast.py	/^class Operation(Expression):$/;"	kind:class	line:354
+OperationHolder	nectan/parser.py	/^class OperationHolder(object):$/;"	kind:class	line:13
+Operations	nectan/definitions.py	/^class Operations():$/;"	kind:class	line:19
+POSTFIX	nectan/definitions.py	/^    POSTFIX = ["++", "--"]$/;"	kind:variable	line:21
+PRECEDENCE	nectan/definitions.py	/^    PRECEDENCE = [$/;"	kind:variable	line:59
+PREFIX	nectan/definitions.py	/^    PREFIX = ["-", "+", "~", "!", "++", "--"]$/;"	kind:variable	line:20
+ParseError	nectan/definitions.py	/^class ParseError(RuntimeError):$/;"	kind:class	line:113
+Parser	nectan/parser.py	/^class Parser(object):$/;"	kind:class	line:34
+Parser	test.py	/^from nectan.parser import Parser$/;"	kind:namespace	line:1
+PostfixOp	nectan/ast.py	/^class PostfixOp(Operation):$/;"	kind:class	line:368
+PrefixOp	nectan/ast.py	/^class PrefixOp(Operation):$/;"	kind:class	line:361
+PrettyPrinter	nectan/deobfuscator.py	/^from .printers.pretty import PrettyPrinter$/;"	kind:namespace	line:8
+PrettyPrinter	nectan/printers/pretty.py	/^class PrettyPrinter(definitions.CodePrinter):$/;"	kind:class	line:6
+RANDOM_OPERATIONS	nectan/obfuscator.py	/^    RANDOM_OPERATIONS = ["-", "+", "^"]$/;"	kind:variable	line:13
+RESOLUTION	nectan/definitions.py	/^    RESOLUTION = ["::"]$/;"	kind:variable	line:22
+Return	nectan/ast.py	/^class Return(Statement):$/;"	kind:class	line:334
+RootType	nectan/ast.py	/^class RootType(Node):$/;"	kind:class	line:177
+SELECTION	nectan/definitions.py	/^    SELECTION = ["."]$/;"	kind:variable	line:23
+SPECIAL_TYPES	nectan/definitions.py	/^    SPECIAL_TYPES = ["arrayref", "structref", "funcref"]$/;"	kind:variable	line:10
+SelectionOp	nectan/ast.py	/^class SelectionOp(InfixOp):$/;"	kind:class	line:395
+SemanticError	nectan/definitions.py	/^class SemanticError(RuntimeError):$/;"	kind:class	line:123
+Statement	nectan/ast.py	/^class Statement(Node):$/;"	kind:class	line:164
+StringValue	nectan/ast.py	/^class StringValue(CustomValue):$/;"	kind:class	line:302
+Struct	nectan/ast.py	/^class Struct(Container, SymbolDefinition):$/;"	kind:class	line:139
+Symbol	nectan/symtable.py	/^class Symbol(object):$/;"	kind:class	line:6
+SymbolDefinition	nectan/ast.py	/^class SymbolDefinition(object):$/;"	kind:class	line:3
+TERNARY	nectan/definitions.py	/^    TERNARY = ["?", ":"]$/;"	kind:variable	line:29
+TYPECAST	nectan/definitions.py	/^    TYPECAST = ["(type)"]$/;"	kind:variable	line:31
+TYPES	nectan/definitions.py	/^    TYPES = [$/;"	kind:variable	line:11
+TernaryOp	nectan/ast.py	/^class TernaryOp(PrefixOp):$/;"	kind:class	line:401
+Token	nectan/lexer.py	/^class Token(str):$/;"	kind:class	line:17
+TokenCoords	nectan/lexer.py	/^class TokenCoords(object):$/;"	kind:class	line:6
+Typedef	nectan/ast.py	/^class Typedef(SymbolDefinition, Statement):$/;"	kind:class	line:230
+UglifyPrinter	nectan/printers/uglify.py	/^class UglifyPrinter(definitions.CodePrinter):$/;"	kind:class	line:6
+UserType	nectan/ast.py	/^class UserType(RootType):$/;"	kind:class	line:192
+VAR_MODS	nectan/definitions.py	/^    VAR_MODS = ["const", "static"] # "private", "public"$/;"	kind:variable	line:5
+Value	nectan/ast.py	/^class Value(Node):$/;"	kind:class	line:276
+VariableDeclaration	nectan/ast.py	/^class VariableDeclaration(SymbolDefinition, Statement):$/;"	kind:class	line:219
+While	nectan/ast.py	/^class While(Loop):$/;"	kind:class	line:256
+__add__	nectan/lexer.py	/^    def __add__(self, other):$/;"	kind:member	line:19
+__contains__	nectan/symtable.py	/^    def __contains__(self, key):$/;"	kind:member	line:15
+__getitem__	nectan/symtable.py	/^    def __getitem__(self, key):$/;"	kind:member	line:18
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:11
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:134
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:141
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:148
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:179
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:187
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:194
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:241
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:251
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:257
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:262
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:267
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:285
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:336
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:403
+__init__	nectan/ast.py	/^    def __init__(self):$/;"	kind:member	line:419
+__init__	nectan/ast.py	/^    def __init__(self, arguments = None):$/;"	kind:member	line:410
+__init__	nectan/ast.py	/^    def __init__(self, filename = None):$/;"	kind:member	line:170
+__init__	nectan/ast.py	/^    def __init__(self, name = "", childs = None):$/;"	kind:member	line:116
+__init__	nectan/ast.py	/^    def __init__(self, name = None):$/;"	kind:member	line:212
+__init__	nectan/ast.py	/^    def __init__(self, name = None):$/;"	kind:member	line:221
+__init__	nectan/ast.py	/^    def __init__(self, name):$/;"	kind:member	line:5
+__init__	nectan/ast.py	/^    def __init__(self, name=None):$/;"	kind:member	line:231
+__init__	nectan/ast.py	/^    def __init__(self, operator = "."):$/;"	kind:member	line:397
+__init__	nectan/ast.py	/^    def __init__(self, operator = None):$/;"	kind:member	line:356
+__init__	nectan/ast.py	/^    def __init__(self, operator = None):$/;"	kind:member	line:363
+__init__	nectan/ast.py	/^    def __init__(self, operator = None):$/;"	kind:member	line:370
+__init__	nectan/ast.py	/^    def __init__(self, operator = None):$/;"	kind:member	line:377
+__init__	nectan/ast.py	/^    def __init__(self, operator = None):$/;"	kind:member	line:385
+__init__	nectan/ast.py	/^    def __init__(self, operator = None):$/;"	kind:member	line:391
+__init__	nectan/ast.py	/^    def __init__(self, value = None):$/;"	kind:member	line:278
+__init__	nectan/ast.py	/^    def __init__(self, value = None):$/;"	kind:member	line:291
+__init__	nectan/ast.py	/^    def __init__(self, value = None):$/;"	kind:member	line:298
+__init__	nectan/ast.py	/^    def __init__(self, value = None):$/;"	kind:member	line:304
+__init__	nectan/ast.py	/^    def __init__(self, value = None):$/;"	kind:member	line:310
+__init__	nectan/ast.py	/^    def __init__(self, value = None):$/;"	kind:member	line:316
+__init__	nectan/ast.py	/^    def __init__(self, value = None):$/;"	kind:member	line:322
+__init__	nectan/ast.py	/^    def __init__(self, value = None):$/;"	kind:member	line:328
+__init__	nectan/definitions.py	/^    def __init__(self, filename, line, pos, msg):$/;"	kind:member	line:115
+__init__	nectan/definitions.py	/^    def __init__(self, node, msg):$/;"	kind:member	line:125
+__init__	nectan/deobfuscator.py	/^    def __init__(self, options):$/;"	kind:member	line:30
+__init__	nectan/lexer.py	/^    def __init__(self, line, pos):$/;"	kind:member	line:8
+__init__	nectan/obfuscator.py	/^    def __init__(self, options):$/;"	kind:member	line:15
+__init__	nectan/parser.py	/^    def __init__(self, descriptor):$/;"	kind:member	line:15
+__init__	nectan/parser.py	/^    def __init__(self, incPath = ".\/", parseIncludes = True):$/;"	kind:member	line:36
+__init__	nectan/printers/pretty.py	/^    def __init__(self):$/;"	kind:member	line:8
+__init__	nectan/printers/uglify.py	/^    def __init__(self):$/;"	kind:member	line:10
+__init__	nectan/symtable.py	/^    def __init__(self, node = None):$/;"	kind:member	line:8
+__init__	nectan/utils.py	/^    def __init__(self):$/;"	kind:member	line:6
+__init__	nectan/utils.py	/^    def __init__(self, node, visitor):$/;"	kind:member	line:16
+__init__.py	nectan/__init__.py	1;"	kind:file	line:1
+__iter__	nectan/symtable.py	/^    def __iter__(self):$/;"	kind:member	line:12
+addIncludePath	nectan/parser.py	/^    def addIncludePath(self, path):$/;"	kind:member	line:50
+append	nectan/printers/pretty.py	/^    def append(self, scr):$/;"	kind:member	line:26
+append	nectan/printers/uglify.py	/^    def append(self, scr):$/;"	kind:member	line:14
+append	nectan/symtable.py	/^    def append(self, name, node):$/;"	kind:member	line:21
+argparse	galaxy-obfuscator.py	/^import argparse$/;"	kind:namespace	line:3
+argparse	nectan/cli.py	/^import argparse$/;"	kind:namespace	line:1
+ast	nectan/deobfuscator.py	/^from . import ast, parser, symtable, utils$/;"	kind:namespace	line:7
+ast	nectan/obfuscator.py	/^from . import ast$/;"	kind:namespace	line:3
+ast	nectan/parser.py	/^from . import ast$/;"	kind:namespace	line:9
+ast	nectan/printers/pretty.py	/^from .. import ast$/;"	kind:namespace	line:2
+ast	nectan/printers/uglify.py	/^from .. import ast$/;"	kind:namespace	line:2
+ast	nectan/symtable.py	/^from . import ast$/;"	kind:namespace	line:1
+ast.py	nectan/ast.py	1;"	kind:file	line:1
+astDeobfuscate	nectan/deobfuscator.py	/^    def astDeobfuscate(self, rootNode):$/;"	kind:member	line:207
+astObfuscate	nectan/obfuscator.py	/^    def astObfuscate(self, rootNode):$/;"	kind:member	line:82
+author	setup.py	/^    author='Talv',$/;"	kind:variable	line:9
+buildExpressionTree	nectan/parser.py	/^    def buildExpressionTree(self, expressions):$/;"	kind:member	line:216
+checkIdentifier	nectan/parser.py	/^    def checkIdentifier(self, name):$/;"	kind:member	line:155
+cli.py	nectan/cli.py	1;"	kind:file	line:1
+containsOnly	nectan/lexer.py	/^    def containsOnly(self, chars):$/;"	kind:member	line:36
+containsOnly	nectan/lexer.py	/^def containsOnly(s, chars):$/;"	kind:function	line:47
+coords	nectan/lexer.py	/^    def coords(self):$/;"	kind:member	line:33
+copy	nectan/deobfuscator.py	/^import copy$/;"	kind:namespace	line:2
+copy	nectan/obfuscator.py	/^import copy$/;"	kind:namespace	line:1
+copy	nectan/parser.py	/^import copy$/;"	kind:namespace	line:2
+copy	nectan/parser.py	/^import copy$/;"	kind:namespace	line:5
+createNode	nectan/parser.py	/^    def createNode(self, node, coords = None):$/;"	kind:member	line:85
+currentCoords	nectan/parser.py	/^    def currentCoords(self):$/;"	kind:member	line:80
+decodeBinaryExpression	nectan/deobfuscator.py	/^    def decodeBinaryExpression(self, node):$/;"	kind:member	line:163
+definitions	nectan/lexer.py	/^from . import definitions$/;"	kind:namespace	line:3
+definitions	nectan/obfuscator.py	/^from . import definitions$/;"	kind:namespace	line:4
+definitions	nectan/parser.py	/^from . import definitions$/;"	kind:namespace	line:8
+definitions	nectan/printers/pretty.py	/^from .. import definitions$/;"	kind:namespace	line:3
+definitions	nectan/printers/uglify.py	/^from .. import definitions$/;"	kind:namespace	line:3
+definitions	nectan/symtable.py	/^from . import definitions$/;"	kind:namespace	line:2
+definitions.py	nectan/definitions.py	1;"	kind:file	line:1
+deobfuscate	nectan/deobfuscator.py	/^    def deobfuscate(self, filename):$/;"	kind:member	line:245
+deobfuscator	nectan/cli.py	/^def deobfuscator():$/;"	kind:function	line:34
+deobfuscator.py	nectan/deobfuscator.py	1;"	kind:file	line:1
+description	setup.py	/^    description='Utitilies for parsing and manipulating SC2 galaxy script',$/;"	kind:variable	line:8
+dropToken	nectan/parser.py	/^    def dropToken(self):$/;"	kind:member	line:46
+dump	nectan/ast.py	/^    def dump(self):$/;"	kind:member	line:110
+embedStringExternals	nectan/deobfuscator.py	/^    def embedStringExternals(self, rootNode, gameStrings):$/;"	kind:member	line:231
+enterScope	nectan/symtable.py	/^    def enterScope(sym):$/;"	kind:function	line:47
+entry_points	setup.py	/^    entry_points={$/;"	kind:variable	line:12
+escapeString	nectan/printers/pretty.py	/^    def escapeString(self, s):$/;"	kind:member	line:12
+evaluateNumer	nectan/deobfuscator.py	/^        def evaluateNumer(nodeValue):$/;"	kind:function	line:164
+exprListContainsOnlyOp	nectan/parser.py	/^        def exprListContainsOnlyOp(expressions, operator):$/;"	kind:function	line:289
+galaxy-obfuscator.py	galaxy-obfuscator.py	1;"	kind:file	line:1
+generate	nectan/definitions.py	/^    def generate(self, rootNode):$/;"	kind:member	line:135
+generate	nectan/printers/pretty.py	/^    def generate(self, rootNode):$/;"	kind:member	line:215
+generate	nectan/printers/uglify.py	/^    def generate(self, rootNode):$/;"	kind:member	line:140
+generateExpression	nectan/obfuscator.py	/^    def generateExpression(self, result, depth):$/;"	kind:member	line:95
+generateUglyName	nectan/obfuscator.py	/^    def generateUglyName(self, attempt = 0):$/;"	kind:member	line:24
+getAncestor	nectan/ast.py	/^    def getAncestor(self, ancestorType):$/;"	kind:member	line:49
+getChildren	nectan/ast.py	/^    def getChildren(self):$/;"	kind:member	line:63
+getChildsVarNames	nectan/ast.py	/^    def getChildsVarNames(self):$/;"	kind:member	line:15
+getOperator	nectan/parser.py	/^    def getOperator(self):$/;"	kind:member	line:30
+getOpsByPrecedence	nectan/parser.py	/^        def getOpsByPrecedence(exprList):$/;"	kind:function	line:217
+getParent	nectan/ast.py	/^    def getParent(self, parentType=None):$/;"	kind:member	line:38
+getPrecedenceValue	nectan/parser.py	/^    def getPrecedenceValue(self):$/;"	kind:member	line:19
+hasParent	nectan/ast.py	/^    def hasParent(self, parent):$/;"	kind:member	line:60
+hashlib	nectan/deobfuscator.py	/^import hashlib$/;"	kind:namespace	line:1
+indentDec	nectan/printers/pretty.py	/^    def indentDec(self):$/;"	kind:member	line:21
+indentInc	nectan/printers/pretty.py	/^    def indentInc(self):$/;"	kind:member	line:18
+isDeclaration	nectan/parser.py	/^    def isDeclaration(self):$/;"	kind:member	line:110
+isFunction	nectan/parser.py	/^    def isFunction(self):$/;"	kind:member	line:92
+isIllegal	nectan/parser.py	/^    def isIllegal(self, name):$/;"	kind:member	line:149
+isKeyword	nectan/parser.py	/^    def isKeyword(self, name):$/;"	kind:member	line:143
+json	nectan/ast.py	/^import json$/;"	kind:namespace	line:1
+leaveScope	nectan/symtable.py	/^    def leaveScope():$/;"	kind:function	line:50
+lexer	nectan/parser.py	/^from . import lexer$/;"	kind:namespace	line:10
+lexer.py	nectan/lexer.py	1;"	kind:file	line:1
+linter	nectan/cli.py	/^def linter():$/;"	kind:function	line:7
+main	galaxy-obfuscator.py	/^def main():$/;"	kind:function	line:6
+mapIdentifier	nectan/symtable.py	/^    def mapIdentifier(identifier):$/;"	kind:function	line:71
+mapSymbols	nectan/symtable.py	/^def mapSymbols(rootNode, rootSmTable):$/;"	kind:function	line:43
+name	setup.py	/^    name='nectan',$/;"	kind:variable	line:6
+nectan	galaxy-obfuscator.py	/^import nectan.obfuscator$/;"	kind:namespace	line:2
+newline	nectan/printers/pretty.py	/^    def newline(self):$/;"	kind:member	line:31
+obfuscate	nectan/obfuscator.py	/^    def obfuscate(self, filename):$/;"	kind:member	line:117
+obfuscator	galaxy-obfuscator.py	/^import nectan.obfuscator$/;"	kind:namespace	line:2
+obfuscator.py	nectan/obfuscator.py	1;"	kind:file	line:1
+os	nectan/cli.py	/^import os$/;"	kind:namespace	line:2
+os	nectan/deobfuscator.py	/^import os$/;"	kind:namespace	line:5
+os	nectan/parser.py	/^import os$/;"	kind:namespace	line:6
+pack	nectan/ast.py	/^    def pack(self):$/;"	kind:member	line:89
+pack	nectan/symtable.py	/^    def pack(self):$/;"	kind:member	line:33
+packages	setup.py	/^    packages=['nectan'],$/;"	kind:variable	line:11
+parseArgument	nectan/parser.py	/^    def parseArgument(self):$/;"	kind:member	line:581
+parseBlockOrStatement	nectan/parser.py	/^    def parseBlockOrStatement(self):$/;"	kind:member	line:759
+parseClassStruct	nectan/parser.py	/^    def parseClassStruct(self):$/;"	kind:member	line:638
+parseContainer	nectan/parser.py	/^    def parseContainer(self, block = None):$/;"	kind:member	line:659
+parseDeclaration	nectan/parser.py	/^    def parseDeclaration(self, stripSemicolon = False, limit = -1):$/;"	kind:member	line:433
+parseDoWhile	nectan/parser.py	/^    def parseDoWhile(self):$/;"	kind:member	line:527
+parseError	nectan/parser.py	/^    def parseError(self, msg):$/;"	kind:member	line:70
+parseExpression	nectan/parser.py	/^    def parseExpression(self, endDelimeter):$/;"	kind:member	line:288
+parseFile	nectan/parser.py	/^    def parseFile(self, filename, rootNode = None):$/;"	kind:member	line:765
+parseFor	nectan/parser.py	/^    def parseFor(self):$/;"	kind:member	line:553
+parseFunction	nectan/parser.py	/^    def parseFunction(self):$/;"	kind:member	line:596
+parseGameStrings	nectan/deobfuscator.py	/^def parseGameStrings(filename):$/;"	kind:function	line:20
+parseIdentifier	nectan/parser.py	/^    def parseIdentifier(self):$/;"	kind:member	line:163
+parseIf	nectan/parser.py	/^    def parseIf(self):$/;"	kind:member	line:481
+parseInclude	nectan/parser.py	/^    def parseInclude(self):$/;"	kind:member	line:681
+parseReturn	nectan/parser.py	/^    def parseReturn(self):$/;"	kind:member	line:693
+parseStatement	nectan/parser.py	/^    def parseStatement(self):$/;"	kind:member	line:700
+parseTriggerStrings	nectan/deobfuscator.py	/^def parseTriggerStrings(filename):$/;"	kind:function	line:11
+parseType	nectan/parser.py	/^    def parseType(self):$/;"	kind:member	line:386
+parseTypedef	nectan/parser.py	/^    def parseTypedef(self):$/;"	kind:member	line:424
+parseValue	nectan/parser.py	/^    def parseValue(self):$/;"	kind:member	line:171
+parseWhile	nectan/parser.py	/^    def parseWhile(self):$/;"	kind:member	line:509
+parser	nectan/cli.py	/^from . import parser$/;"	kind:namespace	line:3
+parser	nectan/deobfuscator.py	/^from . import ast, parser, symtable, utils$/;"	kind:namespace	line:7
+parser	nectan/obfuscator.py	/^from . import parser$/;"	kind:namespace	line:6
+parser.py	nectan/parser.py	1;"	kind:file	line:1
+past	nectan/deobfuscator.py	/^import ast as past$/;"	kind:namespace	line:6
+pretty.py	nectan/printers/pretty.py	1;"	kind:file	line:1
+processContainer	nectan/printers/pretty.py	/^    def processContainer(self, nodeContainer, semicolon=False):$/;"	kind:member	line:34
+processContainer	nectan/printers/uglify.py	/^    def processContainer(self, nodeContainer):$/;"	kind:member	line:23
+processNode	nectan/printers/pretty.py	/^    def processNode(self, node):$/;"	kind:member	line:52
+processNode	nectan/printers/uglify.py	/^    def processNode(self, node):$/;"	kind:member	line:33
+prs	test.py	/^prs = Parser(".\/", False)$/;"	kind:variable	line:3
+raiseError	nectan/parser.py	/^    def raiseError(self, msg):$/;"	kind:member	line:77
+random	nectan/deobfuscator.py	/^import random$/;"	kind:namespace	line:3
+random	nectan/obfuscator.py	/^import random$/;"	kind:namespace	line:2
+random	nectan/printers/pretty.py	/^import random$/;"	kind:namespace	line:1
+random	nectan/printers/uglify.py	/^import random$/;"	kind:namespace	line:1
+re	nectan/deobfuscator.py	/^import re$/;"	kind:namespace	line:4
+re	nectan/parser.py	/^import re$/;"	kind:namespace	line:4
+readfile	nectan/parser.py	/^    def readfile(self, filename):$/;"	kind:member	line:55
+register	nectan/symtable.py	/^    def register(node):$/;"	kind:function	line:53
+replaceChild	nectan/ast.py	/^    def replaceChild(self, oldChild, newChild):$/;"	kind:member	line:73
+resetToken	nectan/lexer.py	/^    def resetToken(c = ""):$/;"	kind:function	line:71
+restoreSymbolNames	nectan/deobfuscator.py	/^    def restoreSymbolNames(self, smTable, tsTable=None):$/;"	kind:member	line:39
+retrieveSymbol	nectan/symtable.py	/^    def retrieveSymbol(name):$/;"	kind:function	line:58
+seekDeepIdentifier	nectan/symtable.py	/^    def seekDeepIdentifier(node):$/;"	kind:function	line:80
+set	nectan/lexer.py	/^    def set(self, line=0, pos=0):$/;"	kind:member	line:29
+setFile	nectan/lexer.py	/^    def setFile(self):$/;"	kind:member	line:25
+setParent	nectan/ast.py	/^    def setParent(self, parent, recursive=True):$/;"	kind:member	line:27
+setup	setup.py	/^from distutils.core import setup$/;"	kind:namespace	line:3
+setup.py	setup.py	1;"	kind:file	line:1
+string	nectan/lexer.py	/^import string$/;"	kind:namespace	line:1
+string	nectan/parser.py	/^import string$/;"	kind:namespace	line:3
+symtable	nectan/deobfuscator.py	/^from . import ast, parser, symtable, utils$/;"	kind:namespace	line:7
+symtable	nectan/obfuscator.py	/^from . import symtable$/;"	kind:namespace	line:7
+symtable.py	nectan/symtable.py	1;"	kind:file	line:1
+test.py	test.py	1;"	kind:file	line:1
+tokenize	nectan/lexer.py	/^def tokenize(buff):$/;"	kind:function	line:51
+traceback	nectan/parser.py	/^import traceback$/;"	kind:namespace	line:1
+uglify	nectan/obfuscator.py	/^from .printers import uglify$/;"	kind:namespace	line:8
+uglify.py	nectan/printers/uglify.py	1;"	kind:file	line:1
+uglifySymbols	nectan/obfuscator.py	/^    def uglifySymbols(self, smTable):$/;"	kind:member	line:35
+url	setup.py	/^    url='https:\/\/github.com\/Talv\/nectan',$/;"	kind:variable	line:10
+utils	nectan/deobfuscator.py	/^from . import ast, parser, symtable, utils$/;"	kind:namespace	line:7
+utils	nectan/obfuscator.py	/^from . import utils$/;"	kind:namespace	line:5
+utils	nectan/symtable.py	/^from . import utils$/;"	kind:namespace	line:3
+utils.py	nectan/utils.py	1;"	kind:file	line:1
+version	setup.py	/^    version='0.0.1',$/;"	kind:variable	line:7
+visitor	nectan/deobfuscator.py	/^        def visitor(walker, node):$/;"	kind:function	line:208
+visitor	nectan/deobfuscator.py	/^        def visitor(walker, node):$/;"	kind:function	line:232
+visitor	nectan/obfuscator.py	/^        def visitor(walker, node):$/;"	kind:function	line:83
+visitorDefMapper	nectan/symtable.py	/^    def visitorDefMapper(walker, node):$/;"	kind:function	line:90
+visitorRefMapper	nectan/symtable.py	/^    def visitorRefMapper(walker, node):$/;"	kind:function	line:100
+walk	nectan/utils.py	/^    def walk(self, currentNode=None):$/;"	kind:member	line:23

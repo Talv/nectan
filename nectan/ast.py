@@ -35,16 +35,16 @@ class Node(object):
                     if isinstance(item, Node):
                         item.setParent(self, recursive)
 
-    def getParent(self, parentType = None, parentNode = None):
-        return self._parent
+    def getParent(self, parentType=None):
         if not self._parent:
             return None
-        elif parentType and isinstance(self._parent, parentType):
-            return self._parent
-        elif parentNode and self._parent == parentNode:
-            return self._parent
+        elif parentType:
+            if isinstance(self._parent, parentType):
+                return self._parent
+            else:
+                return self._parent.getParent(parentType)
         else:
-            return self._parent.getParent(parentType, parentNode)
+            return self._parent
 
     def getAncestor(self, ancestorType):
         if not self._parent:
@@ -198,13 +198,13 @@ class UserType(RootType):
 
 #
 
-class Variable(SymbolDefinition, Node):
+# class Variable(SymbolDefinition, Node):
 
-    def __init__(self, name = None):
-        Node.__init__(self)
-        SymbolDefinition.__init__(self, name)
-        self.modifiers = None
-        self.type = None
+#     def __init__(self, name = None):
+#         Node.__init__(self)
+#         SymbolDefinition.__init__(self, name)
+#         self.modifiers = None
+#         self.type = None
 
 
 class ArgumentDefinition(SymbolDefinition, Node):
@@ -221,8 +221,17 @@ class VariableDeclaration(SymbolDefinition, Statement):
     def __init__(self, name = None):
         Node.__init__(self)
         SymbolDefinition.__init__(self, name)
-        self.dimensions = list()
+        # self.dimensions = list()
+        self.type = None
+        self.modifiers = None
         self.initialization = None
+
+
+class Typedef(SymbolDefinition, Statement):
+    def __init__(self, name=None):
+        Node.__init__(self)
+        SymbolDefinition.__init__(self, name)
+        self.type = None
 
 
 #
@@ -239,20 +248,22 @@ class If(Node):
 
 
 class Loop(Container):
-
     def __init__(self):
         super(Loop, self).__init__("loop")
         self.condition = None
 
 
 class While(Loop):
+    def __init__(self):
+        super().__init__()
 
+
+class DoWhile(Loop):
     def __init__(self):
         super().__init__()
 
 
 class For(Loop):
-
     def __init__(self):
         super().__init__()
         self.init = None

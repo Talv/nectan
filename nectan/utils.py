@@ -20,7 +20,7 @@ class NodeWalker(object):
 
         self.visitor(self, self.node)
 
-    def walk(self, currentNode = None):
+    def walk(self, currentNode=None):
         self.depth += 1
         if currentNode:
             self.node = currentNode

@@ -19,9 +19,25 @@ class Symbol(object):
         return self.entries[key]
 
     def append(self, name, node):
-        if name in self.entries:
+        if (
+            name not in self.entries or
+            (
+                isinstance(self.entries[name].node, ast.FunctionDefinition) and
+                True
+            )
+           ):
+            self.entries[name] = node
+        else:
             assert(0)
-        self.entries[name] = node
+
+    def pack(self):
+        r = {}
+        for x in self.entries:
+            r[x] = self.entries[x].pack()
+        return {
+            'node': self.node,
+            'entries': r
+        }
 
 
 def mapSymbols(rootNode, rootSmTable):
@@ -39,7 +55,7 @@ def mapSymbols(rootNode, rootSmTable):
         smTables[0].append(node.name, sym)
         return sym
 
-    def seekSymbol(name):
+    def retrieveSymbol(name):
         # if len(selectedScope):
         #     if name in selectedScope[0]:
         #         return selectedScope[0][name]
@@ -53,13 +69,23 @@ def mapSymbols(rootNode, rootSmTable):
         return False
 
     def mapIdentifier(identifier):
-        symbol = seekSymbol(identifier.value)
+        symbol = retrieveSymbol(identifier.value)
         if not symbol:
             return None
             # @TODO warning?
             # raise definitions.SemanticError(identifier, "referenced underclared symbol '%s'" % identifier.value)
         identifier._symbol = symbol
         return symbol
+
+    def seekDeepIdentifier(node):
+        if isinstance(node, ast.Identifier):
+            return node
+        elif isinstance(node, ast.ArraySubscript):
+            return seekDeepIdentifier(node.value)
+        elif isinstance(node, ast.SelectionOp):
+            return seekDeepIdentifier(node.rvalue)
+        else:
+            return None
 
     def visitorDefMapper(walker, node):
         if not isinstance(node, ast.File):
@@ -81,7 +107,7 @@ def mapSymbols(rootNode, rootSmTable):
             elif isinstance(node, ast.SelectionOp):
                 # print(node.lvalue)
                 selectionEntered = False
-                if not isinstance(node.getParent(), ast.SelectionOp):
+                if not isinstance(node.getParent(), (ast.SelectionOp)):
                     scopeSelectors.insert(0, list())
                     selectionEntered = True
                 walker.walk()
@@ -116,13 +142,21 @@ def mapSymbols(rootNode, rootSmTable):
 
             #
             if isinstance(node.getParent(), ast.SelectionOp) and not isinstance(node, ast.SelectionOp):
+                sym = None
                 if isinstance(node, ast.Identifier):
                     sym = node._symbol
-                elif isinstance(node, ast.ArraySubscript):
-                    sym = node.value._symbol
+                # elif isinstance(node, ast.ArraySubscript):
+                #     sym = node.value._symbol
+                #     if isinstance(node.value, ast.ArraySubscript):
+                #         avalue = node.value._s
+                #     sym = node.value._symbol
                 else:
-                    assert(0)
-                if isinstance(sym.node.type, ast.UserType):
+                    try:
+                        sym = seekDeepIdentifier(node)._symbol
+                    except AttributeError:
+                        pass
+                    # assert(0)
+                if sym and isinstance(sym.node.type, ast.UserType):
                     sym = sym.node.type.identifier._symbol
                     scopeSelectors[0].insert(0, sym)
         else:

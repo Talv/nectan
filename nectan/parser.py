@@ -175,7 +175,7 @@ class Parser(object):
             self.raiseError("Expected value, found '%s' (unrecognized operator?)" % self.tokens[0])
 
         if self.tokens[0][0] in string.digits: # 0123456789 0b01 0xAA
-            allowedChars = list( x for x in (string.digits + string.hexdigits + ".x") )
+            allowedChars = list( x for x in (string.digits + string.hexdigits + ".xX") )
             if False in (c in allowedChars for c in self.tokens[0]):
                 self.raiseError("Expected constant number, found illegal characters")
             if "." in self.tokens[0]:
@@ -185,11 +185,13 @@ class Parser(object):
                 node = self.createNode(ast.IntegerValue())
                 if self.tokens[0].startswith("0b"):
                     base = 2
-                elif self.tokens[0].startswith("0x"):
+                elif self.tokens[0].lower().startswith("0x"):
                     base = 16
+                elif self.tokens[0].lower().startswith("0"):
+                    base = 8
                 else:
                     base = 10
-                node.value = int(self.dropToken(), base = base)
+                node.value = int(self.dropToken(), base=base)
         elif self.tokens[0][0] == '"':
             node = self.createNode(ast.StringValue(
                 self.dropToken()[1:-1]
@@ -419,6 +421,15 @@ class Parser(object):
 
         return node
 
+    def parseTypedef(self):
+        self.dropToken()
+        node = self.createNode(ast.Typedef())
+        node.type = self.parseType()
+        self.checkIdentifier(self.tokens[0])
+        node.name = self.dropToken()
+
+        return node
+
     def parseDeclaration(self, stripSemicolon = False, limit = -1):
         declarations = list()
         modifiers = list()
@@ -510,6 +521,32 @@ class Parser(object):
         self.dropToken()
 
         self.parseContainer(node)
+
+        return node
+
+    def parseDoWhile(self):
+        node = self.createNode(ast.DoWhile())
+
+        self.dropToken()
+
+        self.parseContainer(node)
+
+        if self.tokens[0] != "while":
+            self.raiseError("Expected 'while'")
+        self.dropToken()
+
+        if self.tokens[0] != "(":
+            self.raiseError("Expected '('")
+        self.dropToken()
+
+        node.condition = self.parseExpression([")"])
+        if self.tokens[0] != ")":
+            self.raiseError("Expected ')'")
+        self.dropToken()
+
+        if self.tokens[0] != ";":
+            self.raiseError("Expected ';'")
+        self.dropToken()
 
         return node
 
@@ -699,6 +736,10 @@ class Parser(object):
             node = self.parseFor()
         elif self.tokens[0] == "while":
             node = self.parseWhile()
+        elif self.tokens[0] == "do":
+            node = self.parseDoWhile()
+        elif self.tokens[0] == "typedef":
+            node = self.parseTypedef()
         elif self.isFunction():
             node = self.parseFunction()
         elif self.isDeclaration():
