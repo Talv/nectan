@@ -213,5 +213,7 @@ class PrettyPrinter(definitions.CodePrinter):
             print("print: unkown node - " + str(node))
 
     def generate(self, rootNode):
+        self.script = ""
+        self.indent = 0
         self.processNode(rootNode)
         return self.script

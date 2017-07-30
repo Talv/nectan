@@ -13,6 +13,12 @@ class TokenCoords(object):
     #     return ""
     #     return json.dumps(self.__dict__)
 
+    def serialize(self):
+        return {
+            'line': self.line,
+            'pos': self.pos,
+        }
+
 
 class Token(str):
 
@@ -53,7 +59,7 @@ def tokenize(buff):
     symbols = string.punctuation.replace("_", "")
     digits = string.digits
     floating = digits + "."
-    hexal = string.hexdigits
+    # hexal = string.hexdigits
     whitespace = string.whitespace
     # location
     line = 1
@@ -108,13 +114,13 @@ def tokenize(buff):
                 currentToken += Token(char)
         # symbols
         elif char in symbols:
+            # float
+            if char == "." and (len(currentToken) == 0 or currentToken.containsOnly(floating)):
+                currentToken += Token(char)
             # operator
-            if (currentToken + char) in definitions.Operations.OPERATORS:
+            elif currentToken + char in definitions.Operations.OPERATORS:
                 currentToken = Token(currentToken + char)
                 currentToken.set(line, pos)
-            # float
-            elif char == "." and currentToken.containsOnly(floating):
-                currentToken += Token(char)
             # separator
             else:
                 if currentToken != "":
@@ -123,7 +129,9 @@ def tokenize(buff):
         # non symbols
         else:
             # end of the symbol operator?
-            if currentToken.containsOnly(symbols):
+            if (currentToken.containsOnly(symbols) and
+                (not currentToken.containsOnly(floating) or char not in floating)
+            ):
                 yield currentToken
                 currentToken = resetToken()
             # whitespace

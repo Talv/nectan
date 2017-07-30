@@ -5,7 +5,7 @@ from . import utils
 
 class Symbol(object):
 
-    def __init__(self, node = None):
+    def __init__(self, node=None):
         self.entries = dict()
         self.node = node
 
@@ -22,13 +22,23 @@ class Symbol(object):
         if (
             name not in self.entries or
             (
-                isinstance(self.entries[name].node, ast.FunctionDefinition) and
-                True
+                isinstance(self.entries[name].node, ast.FunctionDefinition) or
+                isinstance(self.entries[name].node, ast.VariableDeclaration)
             )
-           ):
-            self.entries[name] = node
+        ):
+            if name in self.entries and isinstance(self.entries[name].node, ast.FunctionDefinition) and not self.entries[name].node.isPrototype:
+                pass
+            else:
+                self.entries[name] = node
         else:
-            assert(0)
+            # print(self.entries[name].node.pack())
+            print(self.entries[name].node.getParent(ast.File).name)
+            print("")
+            # print(node.node.pack())
+            print(node.node.getParent(ast.File).name)
+            print("")
+            raise definitions.SemanticError(
+                node, "symbol redeclared '%s'" % name)
 
     def pack(self):
         r = {}
@@ -71,8 +81,13 @@ def mapSymbols(rootNode, rootSmTable):
     def mapIdentifier(identifier):
         symbol = retrieveSymbol(identifier.value)
         if not symbol:
-            return None
+            # return None
             # @TODO warning?
+            print(identifier.pack())
+            print(identifier.getParent(ast.File).name)
+            if identifier.getParent(ast.FunctionDefinition):
+                print(identifier.getParent(ast.FunctionDefinition).name)
+            print("referenced underclared symbol '%s'" % identifier.value)
             # raise definitions.SemanticError(identifier, "referenced underclared symbol '%s'" % identifier.value)
         identifier._symbol = symbol
         return symbol
@@ -156,8 +171,11 @@ def mapSymbols(rootNode, rootSmTable):
                     except AttributeError:
                         pass
                     # assert(0)
-                if sym and isinstance(sym.node.type, ast.UserType):
-                    sym = sym.node.type.identifier._symbol
+                if sym:
+                    if isinstance(sym.node.type, ast.UserType):
+                        sym = sym.node.type.identifier._symbol
+                    elif isinstance(sym.node.type, ast.BuiltinType) and sym.node.type.name in definitions.Instructions.SPECIAL_TYPES:
+                        sym = sym.node.type.arguments[0].identifier._symbol
                     scopeSelectors[0].insert(0, sym)
         else:
             walker.walk()

@@ -12,6 +12,7 @@ setup(
     entry_points={
         'console_scripts': [
             'galaxylint=nectan.cli:linter',
+            'galaxysym=nectan.cli:symbol',
             'galaxyobf=nectan.cli:obfuscator',
             'galaxydeobf=nectan.cli:deobfuscator'
         ]

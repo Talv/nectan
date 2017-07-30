@@ -33,3 +33,24 @@ class NodeWalker(object):
 
     # def visitor(self, node):
     #     raise NotImplementedError()
+
+
+class NodeWalkerEx(object):
+    def __init__(self, node):
+        self.node = node
+        self.depth = 0
+        self.visitor(self.node)
+
+    def walk(self, currentNode=None):
+        self.depth += 1
+        if currentNode:
+            self.node = currentNode
+            self.visitor(currentNode)
+        elif not currentNode:
+            currentNode = self.node
+        for x in currentNode.getChildren():
+            self.node = x
+            self.visitor(self.node)
+
+    def visitor(self, node):
+        raise NotImplementedError()

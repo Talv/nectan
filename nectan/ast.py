@@ -1,10 +1,5 @@
 import json
-
-class SymbolDefinition(object):
-
-    def __init__(self, name):
-        self.name = name
-
+from . import lexer
 
 class Node(object):
 
@@ -90,6 +85,7 @@ class Node(object):
         dump = {}
         # dump["id"] = self.__class__.__name__
         dump["id"] = str(self)
+        dump["coords"] = str(self._coords)
         for key in list(name for name in dir(self) if not name.startswith("_")):
             var = getattr(self, key)
             if callable(var):
@@ -101,6 +97,8 @@ class Node(object):
                 for x in var:
                     if isinstance(x, Node):
                         dump[key].append(x.pack())
+                    elif isinstance(x, lexer.TokenCoords):
+                        dump[key].append(x.serialize())
                     else:
                         dump[key].append(str(x))
             else:
@@ -111,11 +109,32 @@ class Node(object):
         return json.dumps(self.pack(), sort_keys = False, indent = 4)
 
 
+class SymbolDefinition(Node):
+    def __init__(self, name):
+        self.name = name
+
+    def serialize(self):
+        cont = None
+        parentSym = self.getParent(SymbolDefinition)
+        if parentSym:
+            cont = parentSym.name
+        return {
+            'name': self.name,
+            'kind': self.__class__.__name__,
+            'container': cont,
+            'location': self._coords.serialize(),
+            'file': self.getParent(File).name
+        }
+
+
+
 class Container(Node):
 
     def __init__(self, name = "", childs = None):
-        super().__init__()
+        # super().__init__()
+        Node.__init__(self)
         self.name = name
+        self.indirectlyMapped = False
         if not childs:
             childs = list()
         self.childs = childs

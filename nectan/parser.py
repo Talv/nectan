@@ -35,13 +35,17 @@ class Parser(object):
 
     def __init__(self, incPath = "./", parseIncludes = True):
         self.parseIncludes = parseIncludes
-        self.incPath = list()
+        self.incPath = [os.path.dirname(
+            os.path.abspath(__file__)) + '/../sc2-sources/']
         self.prevToken = None
         self.isGpp = False
+
         if isinstance(incPath, list):
             self.incPath.extend(incPath)
         elif isinstance(incPath, str):
             self.incPath.append(incPath)
+
+        self.incPath = list(set(self.incPath))
 
     def dropToken(self):
         self.prevToken = self.tokens.pop(0)
@@ -55,9 +59,9 @@ class Parser(object):
     def readfile(self, filename):
         # absoulte path
         if not re.match(r'^(?:/|c:\\)', filename, flags=re.I):
-            for path in self.incPath:
+            for path in reversed(self.incPath):
                 fullFilename = path + filename
-                if not os.path.isfile(fullFilename):
+                if os.path.isfile(fullFilename):
                     filename = fullFilename
         try:
             f = open(filename)
@@ -86,7 +90,7 @@ class Parser(object):
         if not isinstance(node, ast.Node):
             assert(0)
         if not coords:
-            node._cords = self.currentCoords()
+            node._coords = self.currentCoords()
         return node
 
     def isFunction(self):
@@ -161,9 +165,7 @@ class Parser(object):
             return True
 
     def parseIdentifier(self):
-        if self.tokens[0] in definitions.Instructions.KEYWORDS:
-            self.raiseError("Identifier '%s' cannot be a keyword '%s'" %
-                (self.tokens[0], self.tokens[0]) )
+        self.checkIdentifier(self.tokens[0])
         node = self.createNode( ast.Identifier() )
         node.value = self.dropToken()
         return node
@@ -171,10 +173,7 @@ class Parser(object):
     def parseValue(self):
         node = None
 
-        if self.tokens[0] in string.punctuation:
-            self.raiseError("Expected value, found '%s' (unrecognized operator?)" % self.tokens[0])
-
-        if self.tokens[0][0] in string.digits: # 0123456789 0b01 0xAA
+        if self.tokens[0][0] in (string.digits + "."): # 0.1 0. 0123456789 0b01 0xAA
             allowedChars = list( x for x in (string.digits + string.hexdigits + ".xX") )
             if False in (c in allowedChars for c in self.tokens[0]):
                 self.raiseError("Expected constant number, found illegal characters")
@@ -685,8 +684,12 @@ class Parser(object):
         node = self.createNode(ast.Include(self.dropToken()[1:-1]))
 
         if self.parseIncludes:
-            ps = Parser()
-            ps.parseFile(node.filename + ".galaxy", node)
+            ps = Parser(self.incPath)
+            fullname = node.filename
+            if not re.search(r'\.galaxy$', fullname):
+                fullname += '.galaxy'
+            print("parsing: %s" % fullname)
+            ps.parseFile(fullname, node)
 
         return node
 
@@ -768,24 +771,21 @@ class Parser(object):
         ))
 
         if not rootNode:
-            self.rootNode = self.createNode(ast.File(filename))
+            self.rootNode = self.createNode(ast.File(os.path.abspath(filename)))
         else:
             self.rootNode = rootNode
 
         try:
-            try:
-                while len(self.tokens):
-                    result = self.parseStatement()
-                    if isinstance(result, ast.Node):
-                        self.rootNode.childs.append( result )
-                    elif isinstance(result, list):
-                        self.rootNode.childs += result
-                    # else:
-                    #     self.raiseError("?")
-            except IndexError as e:
-                # print(traceback.format_exc())
-                raise self.parseError("Unexpected end of statement") from e
-        except definitions.ParseError as e:
-            pass
+            while len(self.tokens):
+                result = self.parseStatement()
+                if isinstance(result, ast.Node):
+                    self.rootNode.childs.append( result )
+                elif isinstance(result, list):
+                    self.rootNode.childs += result
+                # else:
+                #     self.raiseError("?")
+        except IndexError as e:
+            # print(traceback.format_exc())
+            raise self.parseError("Unexpected end of statement") from e
 
         return self.rootNode

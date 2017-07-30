@@ -2,7 +2,13 @@ import argparse
 import os
 from . import parser
 from .deobfuscator import Deobfuscator
+from .linter import Linter
+from .symbol_provider import SymbolProvider
+import logging
 
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S')
 
 def linter():
     optParser = argparse.ArgumentParser(description="SC2 Galaxy code linter")
@@ -20,15 +26,34 @@ def linter():
     optParser.add_argument(
         "--ignore-filesize",
         action="store_true",
-        help="Ignore file size limit of 10kb"
+        help="Ignore file size limit of 500kb"
+    )
+    optParser.add_argument(
+        "--include",
+        metavar="include",
+        type=str,
+        nargs='+',
+        help="Directories to look for includes"
     )
     params = optParser.parse_args()
-    prs = parser.Parser("./", False)
-    if os.stat(params.file).st_size < 50000 or params.ignore_filesize:
-        prs.parseFile(params.file)
+    if os.stat(params.file).st_size < 500000 or params.ignore_filesize:
+        ln = Linter(params.include)
+        ln.lintFile(params.file)
     else:
         print("galaxylint cannot handle such a big file cause of performance issues.")
-        print("filesize = %d ; current limit = %d" % (os.stat(params.file).st_size, 50000))
+        print("filesize = %d ; current limit = %d" % (os.stat(params.file).st_size, 500000))
+
+
+def symbol():
+    optParser = argparse.ArgumentParser(description="Galaxy symbol information provider")
+    optParser.add_argument(
+        "--version",
+        action="version",
+        version="%(prog)s 0.1"
+    )
+    params = optParser.parse_args()
+    sm = SymbolProvider("./sc2-sources")
+    sm.index()
 
 
 def deobfuscator():

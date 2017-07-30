@@ -1,3 +1,4 @@
+from . import ast
 
 class Instructions():
     CONTAINERS = ["struct"] # , "class", "namespace", "enrichment", "property"
@@ -9,7 +10,7 @@ class Instructions():
     OTHER = ["return"] # "template"
     SPECIAL_TYPES = ["arrayref", "structref", "funcref"]
     TYPES = [
-        "abilcmd", "actor", "actorscope", "aifilter", "animfilter", "bank", "bool", "byte", "camerainfo", "char", "color", "doodad", "fixed", "handle", "int", "marker", "order", "playergroup", "point", "region", "revealer", "sound", "soundlink", "string", "text", "timer", "transmissionsource", "trigger", "unit", "unitfilter", "unitgroup", "unitref", "void", "wave", "waveinfo", "wavetarget", "arrayref", "structref", "funcref"
+        "abilcmd", "actor", "actorscope", "aifilter", "animfilter", "bank", "bool", "byte", "camerainfo", "char", "color", "doodad", "fixed", "handle", "generichandle", "effecthistory", "int", "marker", "order", "playergroup", "point", "region", "revealer", "sound", "soundlink", "string", "text", "timer", "transmissionsource", "trigger", "unit", "unitfilter", "unitgroup", "unitref", "void", "wave", "waveinfo", "wavetarget", "arrayref", "structref", "funcref"
     ]
     BOOL = ["true", "false"]
     NULL = ["null"]
@@ -117,13 +118,33 @@ class ParseError(RuntimeError):
         self.line = line
         self.pos = pos
         self.msg = msg
-        print("%s:%d:%d: parse error, %s" % (filename, line, pos, msg))
+        # print("%s:%d:%d: parse error, %s" % (filename, line, pos, msg))
+
+    def serialize(self):
+        return {
+            'filename': self.filename,
+            'line': self.line,
+            'pos': self.pos,
+            'message': self.msg,
+        }
 
 
 class SemanticError(RuntimeError):
 
     def __init__(self, node, msg):
-        print("SemanticError: %s" % msg)
+        self.filename = node.getParent(ast.File).name
+        self.line = node._coords.line
+        self.pos = node._coords.pos
+        self.msg = msg
+        # print("SemanticError: %s" % msg)
+
+    def serialize(self):
+        return {
+            'filename': self.filename,
+            'line': self.line,
+            'pos': self.pos,
+            'message': self.msg,
+        }
 
 
 #
