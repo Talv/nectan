@@ -4,7 +4,7 @@ from distutils.core import setup
 
 setup(
     name='nectan',
-    version='0.0.1',
+    version='0.1.0',
     description='Utitilies for parsing and manipulating SC2 galaxy script',
     author='Talv',
     url='https://github.com/Talv/nectan',
