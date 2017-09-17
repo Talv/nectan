@@ -1,5 +1,5 @@
 >This package is no longer developed. Instead of trying to refactor existing codebase, I've decided to rewrite it in Typescript.\
->**Replacement: [sc2-galaxy-tools](https://github.com/Talv/sc2-galaxy-tools)**
+>**Replacement: [plaxtony](https://github.com/Talv/plaxtony)**
 
 # nectan
 Python package providing utilities do deal with SC2 galaxy script. It can parse it into AST structure. And perform further tasks.
